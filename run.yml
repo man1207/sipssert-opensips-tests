@@ -3,6 +3,7 @@ logging:
   controller:
     level: DEBUG
 #    console: true
+junit: yes
 tests:
   - accounting
   - auth

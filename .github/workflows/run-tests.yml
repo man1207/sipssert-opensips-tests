@@ -23,12 +23,13 @@ jobs:
     - name: Checkout Tests repo
       uses: actions/checkout@v4
       with:
-        repository: OpenSIPS/sipssert-opensips-tests
+        repository: man1207/sipssert-opensips-tests
+        ref: feature/junit
         path: tests
 
     - name: Read and parse YAML file
       id: set-matrix
-      uses: OpenSIPS/SIPssert/.github/actions/Set_Matrix@main
+      uses: man1207/SIPssert/.github/actions/Set_Matrix@feature/junit
 
   test:
     needs: setup-matrix
@@ -40,12 +41,12 @@ jobs:
     steps:
 
     - name: Prepare SIPssert
-      uses: OpenSIPS/SIPssert/.github/actions/Prepare_SIPssert@main
+      uses: man1207/SIPssert/.github/actions/Prepare_SIPssert@feature/junit
       with:
-        sipssert-repo: OpenSIPS/SIPSsert
-        tests-repo: OpenSIPS/sipssert-opensips-tests
+        sipssert-repo: man1207/SIPSsert
+        tests-repo: man1207/sipssert-opensips-tests
 
     - name: Run Test
-      uses: OpenSIPS/SIPssert/.github/actions/Run_Tests@main
+      uses: man1207/SIPssert/.github/actions/Run_Tests@feature/junit
       with:
         tests: ${{ matrix.tests }}
